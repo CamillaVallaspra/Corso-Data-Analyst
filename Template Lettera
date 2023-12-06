@@ -1,0 +1,23 @@
+{
+    "Ordine materiale":  
+    {
+    "Mittente": [ 
+    {
+      "Nome":"Antonio Bianchi", 
+      "Indirizzo": "Via Azzurro 138",
+      "Città": "Cosenza",
+      "Telefono": "098497531" }],
+    "Destinatario": [
+    { 
+      "Nome":"Luigi Rossi",
+      "Indirizzo": "Via Arancione 25",
+      "Città": "Milano",
+      "Telefono": "08546857"
+    }],
+    
+    "Data":"6/12/2023",
+    "Messaggio": "Egregio signor Rossi le comunichiamo un ordine da espletare con la massima urgenza. La merce da noi richiesta è così costituita: 300 blocchi di fogli a righe 300 blocchi di fogli ruvidi 300 blocchi di fogli lisci 300 blocchi di fogli lucidi. Richiediamo che la merce venga consegnata presso la nostra sede entro il 31 Dicembre 2023. Il pagamento avverrà alla consegna. Distinti saluti.",
+    "firma":"Dott. Antonio Bianchi" 
+	
+   }
+}

@@ -1,0 +1,70 @@
+{ 
+	"rubrica":[
+	{
+	 "Title": "Sig",
+	 "First Name": "Andrea",
+	 "Middle Name": "",
+	 "Last Name":"Selis",
+	 "Mobile Phone": "3286945789",
+	 "E-mail Address": "andrea.selis@studente.com",
+	 "Date of birth": "15-09-1989",
+	 "Age": 34,
+	 "Address": "Via del monte",
+	 "Hometown": "Cagliari",
+	 "Province": "Cagliari"
+	 },
+	 {
+	 "Title": "Sig.ra",
+	 "First Name": "Katsiaryna",
+	 "Middle Name": "",
+	 "Last Name":"Belenkaya",
+	 "Mobile Phone": "3218745956",
+	 "E-mail Address": "katsiaryna.belenkaya@studente.com",
+	 "Date of birth": "25-04-1995",
+	 "Age": 28,
+	 "Address": "Via del castello",
+	 "Hometown": "Roma",
+	 "Province": "Roma"
+	 },
+	 {
+	 "Title": "Sig.ra",
+	 "First Name": "Laurette",
+	 "Middle Name": "",
+	 "Last Name":"Bessi",
+	 "Mobile Phone": "3684532698",
+	 "E-mail Address": "laurette.bessi@studente.com",
+	 "Date of birth": "5-03-1990",
+	 "Age": 33,
+	 "Address": "Via sorgente",
+	 "Hometown": "Padova",
+	 "Province": "Padova"
+	 },
+	 {
+	 "Title": "Sig.ra",
+	 "First Name": "Bianca",
+	 "Middle Name": "",
+	 "Last Name":"Balasca",
+	 "Mobile Phone": "3315247695",
+	 "E-mail Address": "bianca.balasca@studente.com",
+	 "Date of birth": "3-05-1999",
+	 "Age": 24,
+	 "Address": "Via gioco",
+	 "Hometown": "Rieti",
+	 "Province": "Rieti"
+	 },
+	 {
+	 "Title": "Sig.ra",
+	 "First Name": "Filomena",
+	 "Middle Name": "",
+	 "Last Name":"Biancoforte",
+	 "Mobile Phone": "3894545896",
+	 "E-mail Address": "filomena.biancofiore@studente.com",
+	 "Date of birth": "14-09-1994",
+	 "Age": 29,
+	 "Address": "Via serra",
+	 "Hometown": "Torino",
+	 "Province": "Torino"
+	 }
+
+	]
+}

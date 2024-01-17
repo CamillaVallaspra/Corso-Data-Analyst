@@ -1,0 +1,120 @@
+Riempire il serbatorio dell'auto
+1 - Recarsi al totem
+2 - Inserire una banconota
+3 - Selezionare il numero dell'erogatore
+4 - Tornare all'auto
+5- Aprire lo sportellino per il rifornimento
+6 - Svitare il tappo del serbatoio
+7 - Prelevare la pompa dall'erogatore
+8 - Inserire la pompa nel serbatoio
+9 - Attendere
+10 - Togliere la pompa dal serbatoio
+11 - Riporre la pompa nella posizione originaria
+12 - Riavvitare il tappo del serbatoio
+13 - Chiudere lo sportellino per il rifornimento
+
+Studiare un concetto
+1 - Prendere gli appunti delle lezioni
+2 - Prendere il libro di testo
+3 - Fare un riassunto personale del libro integrando gli appunti
+4 - Leggere il riassunto una volta
+5 - Sottolineare le parti fondamentali del riassunto
+6 - Rileggere il riassunto
+7 - Ripetere il riassunto a voce alta
+8 - Se qualcosa non è chiaro tornare al punto 7
+9 - Fare un discorso basato sul riassunto a parole nostre
+
+Acquistare uno snack da un distributore automatico
+1- Recarsi al distributore automatico
+2- Individuare lo snack desiderato
+3- Inserire monete sufficienti all'acquisto dello snack
+4- Selezionare il codice dello snack
+5- Premere invio
+6- Attendere l'erogazione del prodotto
+7- Ritirare il prodotto nell'apposito scomparto
+
+>>> studenti=25
+>>> print(studenti)
+25
+
+>>> nuovistudenti=3
+>>> print(studenti+nuovistudenti)
+28
+
+>>> scuola="Epicode" 
+>>> print(scuola)
+Epicode
+
+>>> [0,1,2,3,4,5]
+[0, 1, 2, 3, 4, 5]
+>>> lista=[0,1,2,3,4,5]
+>>> print(lista) 
+[0, 1, 2, 3, 4, 5]
+
+>>> scuola[0]
+'E'
+
+>>> scuola[0:3]
+'Epi'
+
+>>> x=10
+>>> x=x+2
+>>> x
+12
+>>> x=x*3
+>>> x
+36
+
+>>> x=10
+>>> x=10+2
+>>> print(x)
+12
+>>> x=12*3
+>>> print(x)
+36
+
+>>> nome = input("Input:")
+Input:computer
+>>> output=nome[0:3]+"..."+nome[-3:]
+>>> print(output)
+com...ter
+
+>>> a="Windows"
+>>> len(a)
+7
+>>> b="Excel" 
+>>> len(b)
+5
+>>> c="Powerpoint"
+>>> len(c)
+10
+>>> d="Word"
+>>> len(d)
+4
+
+>>> a=int(input("Scrivi un numero:"))
+Scrivi un numero:2
+>>> b=int(input("Scrivi un altro numero:"))
+Scrivi un altro numero:3
+>>> somma=a+b
+>>> print("La somma è:",somma)
+La somma è: 5
+
+# un utente inserisce tre parole e il programma produce in output la prima in maiuscolo, la seconda in minuscolo e la terza con l'iniziale maiuscola. Poi prende i primi tre caratteri di ognuna e li stampa a video
+>>> parola1="quaderno" 
+>>> parola2="libro" 
+>>> parola3="computer" 
+>>> parola1.upper()
+'QUADERNO'
+>>> parola2.lower()
+'libro'
+>>> parola3.title()
+'Computer'
+
+# Un utente inserisce tre parole e il programma stampa il prodotto delle lunghezze delle parole
+>>> parola1="casa"
+>>> parola2="scuola"
+>>> parola3="università"
+>>> prodotto=len(parola1)*len(parola2)*len(parola3)
+>>> print("Il prodotto è", prodotto)
+Il prodotto è 240

@@ -1,0 +1,61 @@
+let
+    Origine = Excel.Workbook(File.Contents("C:\Users\camil\OneDrive\Desktop\Corsi\Corso Data Analyst\Consegne\Settimana9_PowerBI\Consegna_140224\M3S1E2.xlsx"), null, true),
+    Ordini_Sheet = Origine{[Item="Ordini",Kind="Sheet"]}[Data],
+    #"Intestazioni alzate di livello" = Table.PromoteHeaders(Ordini_Sheet, [PromoteAllScalars=true]),
+    #"Modificato tipo" = Table.TransformColumnTypes(#"Intestazioni alzate di livello",{{"dqwdqw", type text}, {"Column2", type any}, {"Column3", type any}, {"Column4", type text}, {"Column5", type text}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}}),
+    #"Rimosse colonne" = Table.RemoveColumns(#"Modificato tipo",{"Column2", "Column3", "Column9"}),
+    #"Intestazioni abbassate di livello" = Table.DemoteHeaders(#"Rimosse colonne"),
+    #"Modificato tipo1" = Table.TransformColumnTypes(#"Intestazioni abbassate di livello",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type any}, {"Column5", type text}, {"Column6", type text}, {"Column7", type any}, {"Column8", type any}}),
+    #"Rimosse prime righe" = Table.Skip(#"Modificato tipo1",3),
+    #"Intestazioni alzate di livello1" = Table.PromoteHeaders(#"Rimosse prime righe", [PromoteAllScalars=true]),
+    #"Pulito testo" = Table.TransformColumns(#"Intestazioni alzate di livello1",{{"COD PROD", Text.Clean, type text}}),
+    #"Testo troncato" = Table.TransformColumns(#"Pulito testo",{{"COD PROD", Text.Trim, type text}}),
+    #"Pulito testo1" = Table.TransformColumns(#"Testo troncato",{{"Collaboratore", Text.Clean, type text}}),
+    #"Testo troncato1" = Table.TransformColumns(#"Pulito testo1",{{"Collaboratore", Text.Trim, type text}, {"Regione", Text.Trim, type text}}),
+    #"Pulito testo2" = Table.TransformColumns(#"Testo troncato1",{{"Regione", Text.Clean, type text}}),
+    #"Testo troncato2" = Table.TransformColumns(#"Pulito testo2",{{"Categoria", Text.Trim, type text}}),
+    #"Pulito testo3" = Table.TransformColumns(#"Testo troncato2",{{"Categoria", Text.Clean, type text}}),
+    #"Testo troncato3" = Table.TransformColumns(#"Pulito testo3",{{"Prodotto", Text.Trim, type text}}),
+    #"Pulito testo4" = Table.TransformColumns(#"Testo troncato3",{{"Prodotto", Text.Clean, type text}}),
+    #"Sostituito valore" = Table.ReplaceValue(#"Pulito testo4",null,0,Replacer.ReplaceValue,{"Quantità"}),
+    #"Aggiunta colonna personalizzata" = Table.AddColumn(#"Sostituito valore", "P_x_Q", each [Prezzo unitario]*[Quantità]),
+    #"Rinominate colonne" = Table.RenameColumns(#"Aggiunta colonna personalizzata",{{"Column4", "DATA ORDINE"}}),
+    #"Ordinate righe" = Table.Sort(#"Rinominate colonne",{{"Collaboratore", Order.Ascending}}),
+    #"Filtrate righe" = Table.SelectRows(#"Ordinate righe", each true),
+    #"Ordinate righe1" = Table.Sort(#"Filtrate righe",{{"Collaboratore", Order.Ascending}}),
+    #"Caratteri finali inseriti" = Table.AddColumn(#"Ordinate righe1", "Caratteri finali", each Text.End([COD PROD], 4), type text),
+    #"Rinominate colonne1" = Table.RenameColumns(#"Caratteri finali inseriti",{{"Caratteri finali", "CIFRE"}}),
+    #"Filtrate righe1" = Table.SelectRows(#"Rinominate colonne1", each ([Collaboratore] <> "Fove Anna")),
+    #"Rinominate colonne2" = Table.RenameColumns(#"Filtrate righe1",{{"P_x_Q", "TOTALE"}}),
+    #"Aggiunta colonna personalizzata1" = Table.AddColumn(#"Rinominate colonne2", "IVA", each [TOTALE]*1.22),
+    #"Merge di colonne" = Table.CombineColumns(#"Aggiunta colonna personalizzata1",{"Categoria", "Prodotto"},Combiner.CombineTextByDelimiter(" ", QuoteStyle.None),"CAT PROD"),
+    #"Aggiunta colonna personalizzata2" = Table.AddColumn(#"Merge di colonne", "SE", each if[Quantità]>20 then "TROVATO" else "NON TROVATO"),
+    #"Verifica tipo dati" = Table.TransformColumnTypes(#"Aggiunta colonna personalizzata2",{{"COD PROD", type text}, {"Collaboratore", type text}, {"Regione", type text}, {"DATA ORDINE", type date}, {"CAT PROD", type text}, {"Prezzo unitario", type number}, {"Quantità", Int64.Type}, {"TOTALE", type number}, {"CIFRE", Int64.Type}, {"IVA", type number}, {"SE", type text}}),
+    #"Regione maiuscolo" = Table.TransformColumns(#"Verifica tipo dati",{{"Regione", Text.Upper, type text}})
+in
+    #"Regione maiuscolo"
+
+
+RELAZIONE
+Dopo aver svolto le richieste il file si compone di 4 query di cui l'ultima è la duplicazione della query principale "NUOVI ORDINI" per poter svolgere il conteggio delle righe totali. La query "NUOVI ORDINI" si compone di 14 campi con le relative tipologie di dati: 
+- COD PROD.1 (chiave primaria - testo); 
+- COD PROD.2 (chiave primaria - testo); 
+- COLLABORATORE (testo); 
+- REGIONE (testo);
+- DATA ORDINE (data);
+- CAT PROD (testo);
+- PREZZO UNITARIO (numero);
+- QUANTITA (int64);
+- TOTALE (numero);
+- CIFRE (int64);
+- IVA (numero);
+- SE_TROVATO (testo);
+- SE_APRILE (testo);
+- CATEGORIA (int64).
+La query "SECONDA" invece si compone di:
+- Collaboratore (testo);
+- Somma quantità (int64): ottenuto sommando le quantità vendute per ciascun collaboratore.
+La query "FATTURATO_REGIONE" è formata da:
+- Regione (testo);
+- Fatturato (numero): calcolato sommando i totali e raggruppandoli per regione.
+La query "Conteggio righe" è stata ottenuta duplicano la query "NUOVI ORDINI" e applicando la funzione "Conteggio righe" nella sezione Trasforma Tabella
